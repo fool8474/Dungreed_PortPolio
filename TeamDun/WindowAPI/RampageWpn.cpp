@@ -42,15 +42,15 @@ void RampageWpn::FireBullet()
 
 			SOUNDMANAGER->play("¹«±â_±ÇÃÑ");
 			ENTITYMANAGER->makeBullet("Bullet01", "BulletEffect01", BT_PLAYER, -20 + _angleCheckPosX + cosf(_targetAngle) * 50, -30 + _angleCheckPosY - sinf(_targetAngle) * 50, _targetAngle,
-				10, 22, 1000, true, _targetAngle);
+				10, 22, 600, true, _targetAngle);
 
 			if (ENTITYMANAGER->getPlayer()->GetIsEquipMulti())
 			{
 				Bullet* bullet2 = ENTITYMANAGER->makeBullet("Bullet01", "BulletEffect01", BT_PLAYER, -20 + _angleCheckPosX + cosf(_targetAngle) * 50, -30 + _angleCheckPosY - sinf(_targetAngle) * 50, _targetAngle - PI / 12,
-					10, 22, 1000, true, _targetAngle - PI / 24);
+					10, 22, 600, true, _targetAngle - PI / 24);
 
 				Bullet* bullet3 = ENTITYMANAGER->makeBullet("Bullet01", "BulletEffect01", BT_PLAYER, -20 + _angleCheckPosX + cosf(_targetAngle) * 50, -30 + _angleCheckPosY - sinf(_targetAngle) * 50, _targetAngle + PI / 12,
-					10, 22, 1000, true, _targetAngle + PI / 24);
+					10, 22, 600, true, _targetAngle + PI / 24);
 			}
 			ENTITYMANAGER->getPlayer()->SetBulletCount(ENTITYMANAGER->getPlayer()->GetBulletCount() - 1);
 

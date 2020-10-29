@@ -6,6 +6,7 @@ enum BULLETSPEEDTYPE
 	BST_FAST,
 	BST_GRAVITY,
 	BST_CHARGE,
+	BST_RETURN,
 	BST_TRACE
 };
 enum BULLETTYPE
@@ -53,7 +54,8 @@ private :
 	bool			_useWallCollision;
 	Object*			_target;
 	bool			_isEffectAngle;
-	set<int>		_sUid;
+	bool			_isResetUid;
+	vector<int>		_vUid;
 public :
 	virtual HRESULT init();
 	virtual void	update();
@@ -68,7 +70,7 @@ public :
 	
 
 	////GetSet
-	set<int> getSUid() { return _sUid; }
+	vector<int>& getSUid() { return _vUid; }
 	BULLETTYPE getType() { return _type; }
 	BULLETSPEEDTYPE getSpeedType() {return _speedType;}
 	image* getIg() { return _ig; }
