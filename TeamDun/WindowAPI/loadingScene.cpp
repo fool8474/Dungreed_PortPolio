@@ -1029,13 +1029,13 @@ void loadingScene::loadingImage()
 	_loading->LoadNormalImage("Lala'sMagicWand_inven", "Images/item/Lala'sMagicWand_inven.bmp", 57, 57, true, RGB(255, 0, 255));
 	_loading->LoadNormalImage("Lala'sMagicWand", "Images/item/Lala'sMagicWand.bmp", 70, 70, true, RGB(255, 0, 255));
 	_loading->LoadFrameImage("Autopistol", "Images/item/Autopistol.bmp", 69, 138, 1, 2, true, RGB(255, 0, 255));
-	_loading->LoadNormalImage("Autopistol_drop", "Images/item/Autopistol_drop.bmp", 48, 24, true, RGB(255, 0, 255));
+	_loading->LoadNormalImage("Autopistol_drop", "Images/item/Autopistol_drop.bmp", 48, 32, true, RGB(255, 0, 255));
 	_loading->LoadNormalImage("Autopistol_inven", "Images/item/Autopistol_inven.bmp", 57, 57, true, RGB(255, 0, 255));
-	_loading->LoadNormalImage("Canon_drop", "Images/item/Canon_drop.bmp", 57, 30, true, RGB(255, 0, 255));
+	_loading->LoadNormalImage("Canon_drop", "Images/item/Canon_drop.bmp", 57, 34, true, RGB(255, 0, 255));
 	_loading->LoadNormalImage("Canon_inven", "Images/item/Canon_inven.bmp", 57, 57, true, RGB(255, 0, 255));
 	_loading->LoadFrameImage("Canon", "Images/item/Canon.bmp", 63, 126,1,2, true, RGB(255, 0, 255));
 	_loading->LoadFrameImage("Rifle", "Images/item/Rifle.bmp", 111, 222, 1, 2, true, RGB(255, 0, 255));
-	_loading->LoadNormalImage("Rifle_drop", "Images/item/Rifle_drop.bmp", 57, 21, true, RGB(255, 0, 255));
+	_loading->LoadNormalImage("Rifle_drop", "Images/item/Rifle_drop.bmp", 57, 32, true, RGB(255, 0, 255));
 	_loading->LoadNormalImage("Rifle_inven", "Images/item/Rifle_inven.bmp", 57, 57, true, RGB(255, 0, 255));
 	_loading->LoadNormalImage("Canon_bullet", "Images/item/Canon_bullet.bmp", 66, 72, true, RGB(255, 0, 255));
 	_loading->LoadFrameImage("boom", "Images/item/boom.bmp", 2484, 219, 12, 1, true, RGB(255, 0, 255));
@@ -1047,6 +1047,7 @@ void loadingScene::loadingImage()
 	_loading->LoadNormalImage("GoldenCandy", "Images/item/GoldenCandy.bmp", 57, 57, true, RGB(255, 0, 255));
 	_loading->LoadFrameImage("MetalBoomerang", "Images/item/MetalBoomerang.bmp", 93, 186, 1,2, true, RGB(255, 0, 255));
 	_loading->LoadNormalImage("MetalBoomerang_Inven", "Images/item/MetalBoomerang_Inven.bmp", 57, 57, true, RGB(255, 0, 255));
+	_loading->LoadNormalImage("MetalBoomerang_drop", "Images/item/MetalBoomerang_drop.bmp", 48, 48, true, RGB(255, 0, 255));
 	_loading->LoadFrameImage("MetalBoomerangSpin", "Images/item/MetalBoomerangSpin.bmp", 222, 111, 2, 1, true, RGB(255, 0, 255));
 
 	// BULLET //
