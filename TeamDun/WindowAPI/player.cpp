@@ -808,11 +808,11 @@ void Player::ReloadBullet()
 			_isReload = false;
 		}
 
-		if (_maxBullet > 0 && _weapons[_selectedWeaponIdx]->GetCurNumOfBullet() < _maxBullet)
+		if (_maxBullet > 0 && _weapons[_selectedWeaponIdx]->GetCurNumOfBullet() < _maxBullet) // 맥스 불릿이 0보다 크거나 현재 총알 갯수가 맥스 불릿보다 작을 때
 		{
-			if (_weapons[_selectedWeaponIdx]->GetCurNumOfBullet() <= 0 || INPUT->GetKeyDown('R'))
+			if (_weapons[_selectedWeaponIdx]->GetCurNumOfBullet() <= 0 || INPUT->GetKeyDown('R')) // 총알이 0이 되거나 R키를 누르면
 			{
-				_isReload = true;
+				_isReload = true; // 재장전 하기
 			}
 		}
 		if (_reloadEffect.isViewing)
