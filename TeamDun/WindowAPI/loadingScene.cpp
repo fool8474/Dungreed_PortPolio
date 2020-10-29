@@ -1038,6 +1038,13 @@ void loadingScene::loadingImage()
 	_loading->LoadNormalImage("Rifle_drop", "Images/item/Rifle_drop.bmp", 57, 32, true, RGB(255, 0, 255));
 	_loading->LoadNormalImage("Rifle_inven", "Images/item/Rifle_inven.bmp", 57, 57, true, RGB(255, 0, 255));
 	_loading->LoadNormalImage("Canon_bullet", "Images/item/Canon_bullet.bmp", 66, 72, true, RGB(255, 0, 255));
+	_loading->LoadNormalImage("RubyNecklace", "Images/item/RubyNecklace.bmp", 57, 57, true, RGB(255, 0, 255));
+	_loading->LoadNormalImage("MidasRing", "Images/item/MidasRing.bmp", 57, 57, true, RGB(255, 0, 255));
+	_loading->LoadNormalImage("HawkEaring", "Images/item/HawkEaring.bmp", 57, 57, true, RGB(255, 0, 255));
+	_loading->LoadNormalImage("NecklaceOfMadness", "Images/item/NecklaceOfMadness.bmp", 57, 57, true, RGB(255, 0, 255));
+	_loading->LoadNormalImage("RingOfMadness", "Images/item/RingOfMadness.bmp", 57, 57, true, RGB(255, 0, 255));
+	_loading->LoadNormalImage("Megingjord", "Images/item/Megingjord.bmp", 57, 57, true, RGB(255, 0, 255));
+	_loading->LoadNormalImage("RedBandana", "Images/item/RedBandana.bmp", 57, 57, true, RGB(255, 0, 255));
 	_loading->LoadFrameImage("boom", "Images/item/boom.bmp", 2484, 219, 12, 1, true, RGB(255, 0, 255));
 
 	// SKILL //

@@ -40,3 +40,10 @@ id,itemType,weaponType,skill,name,description,itemClass,minAtk,maxAtk,atkSpeed,d
 5200,두손무기,원거리,-1,천자총통,대포를 발사하는 먼 동방의 화포,고급,25,40,1,0,1,1,20,-1,100,2500,0,Canon,.,.,Canon_inven,Canon_drop,.,.,.,.,.,.,.,.,.
 4031,두손무기,원거리,-1,MT8 카빈,가볍고 연사가 빠른 돌격 소총,고급,14,16,1,0,0,6,150,-1,0,1500,0,Rifle,.,.,Rifle_inven,Rifle_drop,CRITICALPERCENT,15,.,ETC,0, 6발 점사 총이다.,.,.,.
 5201,한손무기,원거리,-1,부메랑,부메랑은 돌아오지만 사랑은 돌아오지 않는다.,고급,16,19,0.5,0,0,1,0,-1,0,3500,0,MetalBoomerang,.,.,MetalBoomerang_Inven,MetalBoomerang_drop,.,.,.,.,.,.,.,.,.
+4032,악세서리,무기아님,-1,루비 목걸이,비둘기의 피. 생명의 근원,일반,0,0,0,0,0,0,0,-1,0,480,0,RubyNecklace,.,.,RubyNecklace,RubyNecklace,MAXHPPERCENT,10,.,.,.,.,.,.,.
+4033,악세서리,무기아님,-1,마이더스의 반지,몬스터의 손을 황금으로 만들어 줍니다.,고급,0,0,0,0,0,0,0,-1,0,1090,0,MidasRing,.,.,MidasRing,MidasRing,GOLDDROP,75,.,.,.,.,.,.,.
+4034,악세서리,무기아님,-1,매 귀걸이,몸의 중심을 더 안정적으로 지탱하게 해 줍니다.,고급,0,0,0,0,0,0,0,-1,0,1200,0,HawkEaring,.,.,HawkEaring,HawkEaring,CRITICALPERCENT,10,.,.,.,.,.,.,.
+4035,악세서리,무기아님,-1,광기의 목걸이,목을 천천히 조이는 느낌을 받아 황급히 벗었지만 평소와 같은 목걸이었다.,희귀,0,0,0,0,0,0,0,-1,0,5970,0,NecklaceOfMadness,.,.,NecklaceOfMadness,NecklaceOfMadness,MAXHPPERCENT,-20,.,FINALDAMAGEPERCENT,15,.,.,.,.
+4036,악세서리,무기아님,-1,광기의 반지,무기가 더 손에 감기는 느낌을 받습니다.,희귀,0,0,0,0,0,0,0,-1,0,5970,0,RingOfMadness,.,.,RingOfMadness,RingOfMadness,POWER,50,.,MAXHPPERCENT,-20,.,DEFENCE,-10,.
+4037,악세서리,무기아님,-1,메긴기요르드,허리가 얇을수록 강해질 수 있는 벨트,희귀,0,0,0,0,0,0,0,-1,0,6700,0,Megingjord,.,.,Megingjord,Megingjord,TOUGHNESS,4,.,.,.,.,.,.,.
+4038,악세서리,무기아님,-1,붉은 반다나,이 끈에 남은 땀방울은 어떤 목적을 위해 흘리게 될까?,희귀,0,0,0,0,0,0,0,-1,0,6250,0,RedBandana,.,.,RedBandana,RedBandana,MAXHP,20,.,MOVESPEED,-15,.,.,.,.
