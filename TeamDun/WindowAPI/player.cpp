@@ -224,6 +224,7 @@ HRESULT Player::init()
 	_inven->AddItem(DATAMANAGER->GetItemById(5200));
 	_inven->AddItem(DATAMANAGER->GetItemById(4031));
 	_inven->AddItem(DATAMANAGER->GetItemById(4027));
+	_inven->AddItem(DATAMANAGER->GetItemById(5201));
 
 	return S_OK;
 }
@@ -1193,7 +1194,7 @@ void Player::Move()
 void Player::pixelCollision()
 {
 	//////////////////////////// 픽셀충돌 //////////////////////////////
-
+	float _speedCheck = _moveSpeed + ((_moveSpeedPer * _moveSpeed) / 100.f);
 	bool isCollide = false; // 충돌 했는지 여부
 	bool _leftCollision1 = false;
 	bool _leftCollision2 = false;
@@ -1267,7 +1268,7 @@ void Player::pixelCollision()
 
 	}
 
-	for (int i = _x + baseCharIg->getFrameWidth() - 15; i < _x + baseCharIg->getFrameWidth() + 5; i++)
+	for (int i = _x + baseCharIg->getFrameWidth() - 15; i < _x + baseCharIg->getFrameWidth() + _speedCheck; i++)
 	{
 		COLORREF color = GetFastPixel(MAPMANAGER->GetPixelGetter(), i, _probeBottom - 2);
 		int r = GetRValue(color);
@@ -1287,7 +1288,7 @@ void Player::pixelCollision()
 		}
 
 	}
-	for (int i = _x + baseCharIg->getFrameWidth() - 15; i < _x + baseCharIg->getFrameWidth() + 5; i++)
+	for (int i = _x + baseCharIg->getFrameWidth() - 15; i < _x + baseCharIg->getFrameWidth() + _speedCheck; i++)
 	{
 		COLORREF color = GetFastPixel(MAPMANAGER->GetPixelGetter(), i, _probeBottom - 40);
 		int r = GetRValue(color);
@@ -1303,7 +1304,7 @@ void Player::pixelCollision()
 		}
 
 	}
-	for (int i = _x + baseCharIg->getFrameWidth() - 15; i < _x + baseCharIg->getFrameWidth() + 5; i++)
+	for (int i = _x + baseCharIg->getFrameWidth() - 15; i < _x + baseCharIg->getFrameWidth() + _speedCheck; i++)
 	{
 		COLORREF color = GetFastPixel(MAPMANAGER->GetPixelGetter(), i, _y + 2);
 		int r = GetRValue(color);
@@ -1319,7 +1320,7 @@ void Player::pixelCollision()
 	}
 
 	//왼쪽아래
-	for (int i = _x + 15; i > _x - 5; i--)
+	for (int i = _x + 15; i > _x - _speedCheck; i--)
 	{
 		COLORREF color3 = GetFastPixel(MAPMANAGER->GetPixelGetter(), i, _probeBottom - 2);
 		int r = GetRValue(color3);
@@ -1339,7 +1340,7 @@ void Player::pixelCollision()
 		}
 	}
 	//왼쪽중간
-	for (int i = _x + 15; i > _x - 5; i--)
+	for (int i = _x + 15; i > _x - _speedCheck; i--)
 	{
 		COLORREF color3 = GetFastPixel(MAPMANAGER->GetPixelGetter(), i, _probeBottom - 40);
 		int r = GetRValue(color3);
@@ -1355,7 +1356,7 @@ void Player::pixelCollision()
 		}
 	}
 	//왼쪽위
-	for (int i = _x + 15; i > _x - 5; i--)
+	for (int i = _x + 15; i > _x - _speedCheck; i--)
 	{
 		COLORREF color3 = GetFastPixel(MAPMANAGER->GetPixelGetter(), i, _y + 2);
 		int r = GetRValue(color3);

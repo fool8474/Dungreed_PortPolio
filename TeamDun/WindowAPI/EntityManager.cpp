@@ -81,6 +81,10 @@ void EntityManager::eraseBullet()
 					EFFECTMANAGER->AddEffect(_vBullets[i]->getX(), _vBullets[i]->getY(), _vBullets[i]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[i]->getAngle(), 1, 1, false, false, true, _vBullets[i]->getEffectSound(), _vBullets[i]->getDamage(), true);
 					_vBullets[i]->SetIsDead(true);
 				}
+				else if (_vBullets[i]->getSpeedType() == BST_RETURN)
+				{
+					_vBullets[i]->SetIsDead(true);
+				}
 				else
 				{
 					EFFECTMANAGER->AddEffect(_vBullets[i]->getX(), _vBullets[i]->getY(), _vBullets[i]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[i]->getAngle(), 1, 1, false, false, true, _vBullets[i]->getEffectSound());
@@ -92,6 +96,10 @@ void EntityManager::eraseBullet()
 				if (_vBullets[i]->getSpeedType() == BST_GRAVITY)
 				{
 					EFFECTMANAGER->AddEffect(_vBullets[i]->getX(), _vBullets[i]->getY(), _vBullets[i]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[i]->getAngle(), 1, 1, false, false, true, _vBullets[i]->getEffectSound(), _vBullets[i]->getDamage(), true,false);
+					_vBullets[i]->SetIsDead(true);
+				}
+				else if (_vBullets[i]->getSpeedType() == BST_RETURN)
+				{
 					_vBullets[i]->SetIsDead(true);
 				}
 				else
@@ -233,6 +241,78 @@ void EntityManager::HitBullet()
 									}
 									_vBullets[j]->SetIsDead(true);
 									MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetDamage(_vBullets[j]->getDamage());
+								}
+							}
+							break;
+						}
+					}
+					else if (_vBullets[j]->getSpeedType() == BST_RETURN)
+					{
+						if (IntersectRect(&temp, &_vBullets[j]->getRc(), &curObj->GetBody()))
+						{
+							if (!curObj->GetIsDead())
+							{
+								if (curObj->GetType() == OBJECTTYPE::OT_MONSTER)
+								{
+									if (dynamic_cast<Enemy*>(curObj)->GetIsSpawned())
+									{
+										if (_vBullets[j]->getSUid().size() != 0)
+										{
+
+											bool  isFinded = false;
+											for (int k = 0; k < _vBullets[j]->getSUid().size(); k++)
+											{
+												if (MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetUid() == _vBullets[j]->getSUid()[k])
+												{
+													isFinded = true;
+													
+													break;
+												}
+											}
+
+											if (!isFinded)
+											{
+												_vBullets[j]->getSUid().push_back(MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetUid());
+												MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetDamage(_vBullets[j]->getDamage());
+											}
+										}
+										else
+										{
+											_vBullets[j]->getSUid().push_back(MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetUid());
+											
+											MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetDamage(_vBullets[j]->getDamage());
+										}
+
+									}
+								}
+								else
+								{
+									if (_vBullets[j]->getSUid().size() != 0)
+									{
+
+										bool  isFinded = false;
+										for (int k = 0; k < _vBullets[j]->getSUid().size(); k++)
+										{
+											if (MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetUid() == _vBullets[j]->getSUid()[k])
+											{
+												isFinded = true;
+
+												break;
+											}
+										}
+
+										if (!isFinded)
+										{
+											_vBullets[j]->getSUid().push_back(MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetUid());
+											MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetDamage(_vBullets[j]->getDamage());
+										}
+									}
+									else
+									{
+										_vBullets[j]->getSUid().push_back(MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetUid());
+										
+										MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetDamage(_vBullets[j]->getDamage());
+									}
 								}
 							}
 							break;

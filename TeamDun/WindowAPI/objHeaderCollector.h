@@ -67,3 +67,4 @@
 #include "Rifle.h"
 #include "PurpleBat.h"
 #include "abyssBanshee.h"
+#include "Boomerang.h"

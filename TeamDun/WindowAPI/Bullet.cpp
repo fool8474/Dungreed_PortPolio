@@ -92,6 +92,7 @@ void Bullet::makeBullet(const char * imageName, string effectIgName, BULLETTYPE 
 	_target = nullptr;
 	_particleTimer = 0;
 	_isEffectAngle = isEffectAngle;
+	_isResetUid = false;
 	if (_type == BT_PLAYER || _type == BT_PLAYERNOCOL)
 	{
 		if (_speedType == BST_CHARGE)
@@ -229,7 +230,20 @@ void Bullet::speedTypeMove()
 			}
 		}
 		break;
-
+	case BST_RETURN:
+		_speed -= 0.5f;
+		if (_isResetUid == false)
+		{
+			if (_speed < 0)
+			{
+				_angle = UTIL::getAngle(ENTITYMANAGER->getPlayer()->GetX(), ENTITYMANAGER->getPlayer()->GetY(), _x, _y);
+				_isResetUid = true;
+				_vUid.clear();
+			}
+		}
+		
+		break;
+	
 	default:
 		break;
 	}

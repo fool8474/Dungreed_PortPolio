@@ -301,6 +301,8 @@ void DataManager::GetItemData()
 			item = new GoldenCandy(); break;
 		case 5200: // ´ëÆ÷
 			item = new Canon(); break;
+		case 5201: // ºÎ¸Ş¶û
+			item = new Boomerang(); break;
 		default:
 			item = new Item(); break;
 		}
@@ -479,6 +481,8 @@ Item* DataManager::GetItemById(int id)
 		return new GoldenCandy(*dynamic_cast<GoldenCandy*>(_mMapItemData[id]));
 	case 5200: // ´ëÆ÷
 		return new Canon(*dynamic_cast<Canon*>(_mMapItemData[id]));
+	case 5201: // ºÎ¸Ş¶û
+		return new Boomerang(*dynamic_cast<Boomerang*>(_mMapItemData[id]));
 	default:
 		return _mMapItemData[id];
 	}

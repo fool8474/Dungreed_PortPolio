@@ -164,6 +164,7 @@
     <ClInclude Include="BloodOfSrobeo.h" />
     <ClInclude Include="BloodStoneRing.h" />
     <ClInclude Include="BombPouch.h" />
+    <ClInclude Include="Boomerang.h" />
     <ClInclude Include="Boutique.h" />
     <ClInclude Include="BowSkel.h" />
     <ClInclude Include="Box.h" />
@@ -288,6 +289,7 @@
     <ClCompile Include="BloodOfSrobeo.cpp" />
     <ClCompile Include="BloodStoneRing.cpp" />
     <ClCompile Include="BombPouch.cpp" />
+    <ClCompile Include="Boomerang.cpp" />
     <ClCompile Include="Boutique.cpp" />
     <ClCompile Include="BowSkel.cpp" />
     <ClCompile Include="Box.cpp" />
