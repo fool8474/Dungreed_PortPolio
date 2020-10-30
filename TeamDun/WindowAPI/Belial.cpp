@@ -30,8 +30,8 @@ HRESULT Belial::init(int id, string name, OBJECTTYPE type, vector<string> imgNam
 	_RazerEndCount = 0;
 	_realIsViewing = false;
 	_handAlpha = 0;
-	 _hp = 2000;
-	 _initHp = 2000;
+	 _hp = 3500;
+	 _initHp = 3500;
 	_damage = 10; //불렛대미지
 	_playSound = false;
 	_backEffectCount = 0;
