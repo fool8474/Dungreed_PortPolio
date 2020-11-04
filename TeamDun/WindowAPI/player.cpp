@@ -1312,7 +1312,6 @@ void Player::pixelCollision()
 
 		if ((r == 255 && g == 0 && b == 0))
 		{
-
 			_x = i - baseCharIg->getFrameWidth();
 			break;
 		}
@@ -2289,24 +2288,24 @@ void Player::CheckUsePistolGunner()
 		{
 			if (_weapons[_selectedWeaponIdx]->GetWeaponType() == WEAPONTYPE::WT_PISTOL)	//만약 장착된무기가 권총타입이고
 			{
-				if (!_useGun)	//권총사용이 아닐때
+				if (!_useGun)			//권총사용이 아닐때
 				{
-					_power += 50;
-					_useGun = true;
+					_power += 50;		//위력 증가
+					_useGun = true;		//권총 사용중
 				}
 			}
-			else    //만약 장착된무기가 권총이아닌데
+			else						//만약 장착된무기가 권총이아닌데
 			{
-				if (_useGun)	//권총이 사용 될 때
+				if (_useGun)			//권총이 사용 될 때
 				{
-					_power -= 50;
-					_useGun = false;
+					_power -= 50;		//위력 감소
+					_useGun = false;	//권총 사용중이 아님
 				}
 			}
 		}
-		else        //만약 장착된 무기가 없는데
+		else							//만약 장착된 무기가 없는데
 		{
-			if (_useGun)	//권총이 사용될 때
+			if (_useGun)				//권총이 사용될 때
 			{
 				_power -= 50;
 				_useGun = false;
@@ -2352,29 +2351,29 @@ void Player::AdjustAlicePower()
 {
 	if (_clothType == PC_ALICE)
 	{
-		if (_aliceZoneIn)//몬스터가 들어왔고, 
+		if (_aliceZoneIn)						//몬스터가 들어왔고, 
 		{
-			if (!_alicePowerDownCheck)	//위력이감소 안했을때,
+			if (!_alicePowerDownCheck)			//위력이감소 안했을때,
 			{
-				_power -= 20;
-				_alicePowerDownCheck = true;
+				_power -= 20;					//위력 감소
+				_alicePowerDownCheck = true;	//위력이 감소 되었음
 			}
 		}
-		else
+		else                                    //몬스터가 들어오지 않음
 		{
-			if (_alicePowerDownCheck)
+			if (_alicePowerDownCheck)			//위력이 감소 했을때
 			{
-				_power += 20;
-				_alicePowerDownCheck = false;
+				_power += 20;					//위력을 제자리로
+				_alicePowerDownCheck = false;	//위력이 감소되지 않음
 			}
 		}
 	}
-	else
+	else                                        //앨리스 코스튬 상태가 아닐때
 	{
-		if (_alicePowerDownCheck)
+		if (_alicePowerDownCheck)				//위력이 감소했으면
 		{
-			_power += 20;
-			_alicePowerDownCheck = false;
+			_power += 20;						//위력을 제자리로
+			_alicePowerDownCheck = false;		//위력이 감소하지 않음
 		}
 	}
 }
@@ -2382,34 +2381,34 @@ void Player::AdjustAlicePower()
 //	이키나곰 특성
 void Player::SetIkinaBearAngry()
 {
-	if (_clothType == CLOTHTYPE::PC_IKINABEAR)	//선택한 코스튬이 이키나곰 상태
+	if (_clothType == CLOTHTYPE::PC_IKINABEAR)														//선택한 코스튬이 이키나곰 상태
 	{
-		if (_rageCurrent >= _rageMax && !_isRaging)	//현재 화난 값이 화남값 최대보다 크고 변신중이 아닐 때
+		if (_rageCurrent >= _rageMax && !_isRaging)													//현재 화난 값이 화남값 최대보다 크고 변신중이 아닐 때
 		{
-			_isRaging = true;		//변신시켜주고
-			_atkSpeedPer += 100;	//공격속도 증가
-			_rageTimer = 1200;
-			_rageCurrent = 0;
-			_vImages[0] = IMAGEMANAGER->findImage("bearIdle");
+			_isRaging = true;																		//변신시켜주고
+			_atkSpeedPer += 100;																	//공격속도 증가
+			_rageTimer = 1200;																		//변신 시간 초기화
+			_rageCurrent = 0;																		//화난 값 초기화
+			_vImages[0] = IMAGEMANAGER->findImage("bearIdle");										//이미지 변경
 			_vImages[1] = IMAGEMANAGER->findImage("bearRun");
-			UIMANAGER->GetGameFrame()->GetChild("IkinaBearFaceFrame")->SetIsViewing(true);
+			UIMANAGER->GetGameFrame()->GetChild("IkinaBearFaceFrame")->SetIsViewing(true);			//UI 변경
 		}
 		else
 		{
-			if (_isRaging)
+			if (_isRaging)																			//현재 변신중인상태
 			{
-				_rageTimer--;
-				if (_rageTimer <= 0)
-				{
-					_atkSpeedPer -= 100;
-					_rageTimer = 1200;
-					_isRaging = false;
-					_vImages[0] = IMAGEMANAGER->findImage("lkinabearIdle");
+				_rageTimer--;																		//변신 시간 감소
+				if (_rageTimer <= 0)																//변신시간이 0이 되었을때
+				{																					//변신이 풀렸으므로
+					_atkSpeedPer -= 100;															//증가되었던 공격속도 다시 제자리로
+					_rageTimer = 1200;																//변신 시간 초기화
+					_isRaging = false;																//변신중이 아님
+					_vImages[0] = IMAGEMANAGER->findImage("lkinabearIdle");							//이미지 변경
 					_vImages[1] = IMAGEMANAGER->findImage("lkinabearRun");
-					UIMANAGER->GetGameFrame()->GetChild("IkinaBearFaceFrame")->SetIsViewing(true);
+					UIMANAGER->GetGameFrame()->GetChild("IkinaBearFaceFrame")->SetIsViewing(true);	//UI 변경
 				}
 			}
-			else
+			else                                                                                    
 			{
 				UIMANAGER->GetGameFrame()->GetChild("IkinaBearFaceFrame")->SetIsViewing(false);
 			}
@@ -2432,6 +2431,7 @@ void Player::CheckMoveSpeedRiderH()
 		_prevPowerPlus = 50 * speedPercent; // 이번 프레임에서 계산된 비율을 다음 프레임에서 사용하기 위해 저장해둠
 	}
 }
+
 
 void Player::AdaptCriminalCount(bool isPlus)
 {
