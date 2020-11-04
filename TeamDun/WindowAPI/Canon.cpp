@@ -36,17 +36,17 @@ void Canon::FireBullet()
 		{
 
 			SOUNDMANAGER->play("¹«±â_±ÇÃÑ");
-			ENTITYMANAGER->makeBullet("SilverBullet", "BulletFX0103", BT_PLAYER, -20 + _angleCheckPosX + cosf(_angle) * 50, -30 + _angleCheckPosY - sinf(_angle) * 50, _angle,
-				10, 15, 1000, true, _angle , BST_GRAVITY);
+			ENTITYMANAGER->makeBullet("Canon_bullet", "boom", BT_PLAYER, -20 + _angleCheckPosX + cosf(_angle) * 50, -30 + _angleCheckPosY - sinf(_angle) * 50, _angle,
+				10, 15, 1000, true, _angle , BST_GRAVITY ,"",false);
 
 			if (ENTITYMANAGER->getPlayer()->GetIsEquipMulti())
 			{
 
-				Bullet* bullet2 = ENTITYMANAGER->makeBullet("SilverBullet", "BulletFX0103", BT_PLAYER, -20 + _angleCheckPosX + cosf(_angle) * 50, -30 + _angleCheckPosY - sinf(_angle) * 50, _angle - PI / 12,
-					10,15, 1000, true, _angle - PI / 24, BST_GRAVITY);
+				Bullet* bullet2 = ENTITYMANAGER->makeBullet("Canon_bullet", "boom", BT_PLAYER, -20 + _angleCheckPosX + cosf(_angle) * 50, -30 + _angleCheckPosY - sinf(_angle) * 50, _angle - PI / 12,
+					10,15, 1000, true, _angle - PI / 24, BST_GRAVITY, "", false);
 
-				Bullet* bullet3 = ENTITYMANAGER->makeBullet("SilverBullet", "BulletFX0103", BT_PLAYER, -20 + _angleCheckPosX + cosf(_angle) * 50, -30 + _angleCheckPosY - sinf(_angle) * 50, _angle + PI / 12,
-					10, 15, 1000, true, _angle + PI / 24, BST_GRAVITY);
+				Bullet* bullet3 = ENTITYMANAGER->makeBullet("Canon_bullet", "boom", BT_PLAYER, -20 + _angleCheckPosX + cosf(_angle) * 50, -30 + _angleCheckPosY - sinf(_angle) * 50, _angle + PI / 12,
+					10, 15, 1000, true, _angle + PI / 24, BST_GRAVITY, "", false);
 
 			}
 			ENTITYMANAGER->getPlayer()->SetBulletCount(ENTITYMANAGER->getPlayer()->GetBulletCount() - 1);

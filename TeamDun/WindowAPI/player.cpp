@@ -213,7 +213,7 @@ HRESULT Player::init()
 	_inven->init();
 
 	_inven->AddItem(DATAMANAGER->GetItemById(4005));
-	_inven->AddItem(DATAMANAGER->GetItemById(4006));
+	_inven->AddItem(DATAMANAGER->GetItemById(4038));
 	_inven->AddItem(DATAMANAGER->GetItemById(4025));
 	_inven->AddItem(DATAMANAGER->GetItemById(4028));
 	_inven->AddItem(DATAMANAGER->GetItemById(4029));
@@ -224,6 +224,7 @@ HRESULT Player::init()
 	_inven->AddItem(DATAMANAGER->GetItemById(5200));
 	_inven->AddItem(DATAMANAGER->GetItemById(4031));
 	_inven->AddItem(DATAMANAGER->GetItemById(4027));
+	_inven->AddItem(DATAMANAGER->GetItemById(5201));
 
 	return S_OK;
 }
@@ -241,10 +242,11 @@ void Player::update()
 			!UIMANAGER->GetGameFrame()->GetChild("_restaurantBase")->GetIsViewing() &&
 			!UIMANAGER->GetGameFrame()->GetChild("warDrobeFrame")->GetIsViewing() &&
 			!UIMANAGER->GetGameFrame()->GetChild("allTraitFrame")->GetIsViewing() &&
+			!UIMANAGER->GetGameFrame()->GetChild("CheckExit")->GetIsViewing() &&
+			!_traitFrame->GetIsViewing() &&
 			!ENTITYMANAGER->GetWormVillage()->GetIsOn() &&
 			!MAPMANAGER->GetPortalAnimOn() &&
 			!MAPMANAGER->GetStageChanger()->GetIsChangingStage() &&
-			!_traitFrame->GetIsViewing() &&
 			!_isStun &&
 			!_isPlayerDead &&
 			!_isBossReady
@@ -364,7 +366,6 @@ void Player::update()
 		RangeGetStatusAbility();
 		ReloadItemChecker();
 		RestoreHpTimerChecker();
-
 
 		// UI
 		BulletNumUIChecker();
@@ -808,11 +809,11 @@ void Player::ReloadBullet()
 			_isReload = false;
 		}
 
-		if (_maxBullet > 0)
+		if (_maxBullet > 0 && _weapons[_selectedWeaponIdx]->GetCurNumOfBullet() < _maxBullet) // 맥스 불릿이 0보다 크거나 현재 총알 갯수가 맥스 불릿보다 작을 때
 		{
-			if (_weapons[_selectedWeaponIdx]->GetCurNumOfBullet() <= 0)
+			if (_weapons[_selectedWeaponIdx]->GetCurNumOfBullet() <= 0 || INPUT->GetKeyDown('R')) // 총알이 0이 되거나 R키를 누르면
 			{
-				_isReload = true;
+				_isReload = true; // 재장전 하기
 			}
 		}
 		if (_reloadEffect.isViewing)
@@ -1193,7 +1194,7 @@ void Player::Move()
 void Player::pixelCollision()
 {
 	//////////////////////////// 픽셀충돌 //////////////////////////////
-
+	float _speedCheck = _moveSpeed + ((_moveSpeedPer * _moveSpeed) / 100.f);
 	bool isCollide = false; // 충돌 했는지 여부
 	bool _leftCollision1 = false;
 	bool _leftCollision2 = false;
@@ -1267,7 +1268,7 @@ void Player::pixelCollision()
 
 	}
 
-	for (int i = _x + baseCharIg->getFrameWidth() - 15; i < _x + baseCharIg->getFrameWidth() + 5; i++)
+	for (int i = _x + baseCharIg->getFrameWidth() - 15; i < _x + baseCharIg->getFrameWidth() + _speedCheck; i++)
 	{
 		COLORREF color = GetFastPixel(MAPMANAGER->GetPixelGetter(), i, _probeBottom - 2);
 		int r = GetRValue(color);
@@ -1287,7 +1288,7 @@ void Player::pixelCollision()
 		}
 
 	}
-	for (int i = _x + baseCharIg->getFrameWidth() - 15; i < _x + baseCharIg->getFrameWidth() + 5; i++)
+	for (int i = _x + baseCharIg->getFrameWidth() - 15; i < _x + baseCharIg->getFrameWidth() + _speedCheck; i++)
 	{
 		COLORREF color = GetFastPixel(MAPMANAGER->GetPixelGetter(), i, _probeBottom - 40);
 		int r = GetRValue(color);
@@ -1303,7 +1304,7 @@ void Player::pixelCollision()
 		}
 
 	}
-	for (int i = _x + baseCharIg->getFrameWidth() - 15; i < _x + baseCharIg->getFrameWidth() + 5; i++)
+	for (int i = _x + baseCharIg->getFrameWidth() - 15; i < _x + baseCharIg->getFrameWidth() + _speedCheck; i++)
 	{
 		COLORREF color = GetFastPixel(MAPMANAGER->GetPixelGetter(), i, _y + 2);
 		int r = GetRValue(color);
@@ -1318,7 +1319,7 @@ void Player::pixelCollision()
 	}
 
 	//왼쪽아래
-	for (int i = _x + 15; i > _x - 5; i--)
+	for (int i = _x + 15; i > _x - _speedCheck; i--)
 	{
 		COLORREF color3 = GetFastPixel(MAPMANAGER->GetPixelGetter(), i, _probeBottom - 2);
 		int r = GetRValue(color3);
@@ -1338,7 +1339,7 @@ void Player::pixelCollision()
 		}
 	}
 	//왼쪽중간
-	for (int i = _x + 15; i > _x - 5; i--)
+	for (int i = _x + 15; i > _x - _speedCheck; i--)
 	{
 		COLORREF color3 = GetFastPixel(MAPMANAGER->GetPixelGetter(), i, _probeBottom - 40);
 		int r = GetRValue(color3);
@@ -1354,7 +1355,7 @@ void Player::pixelCollision()
 		}
 	}
 	//왼쪽위
-	for (int i = _x + 15; i > _x - 5; i--)
+	for (int i = _x + 15; i > _x - _speedCheck; i--)
 	{
 		COLORREF color3 = GetFastPixel(MAPMANAGER->GetPixelGetter(), i, _y + 2);
 		int r = GetRValue(color3);

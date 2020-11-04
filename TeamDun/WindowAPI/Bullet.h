@@ -6,6 +6,7 @@ enum BULLETSPEEDTYPE
 	BST_FAST,
 	BST_GRAVITY,
 	BST_CHARGE,
+	BST_RETURN,
 	BST_TRACE
 };
 enum BULLETTYPE
@@ -52,15 +53,16 @@ private :
 	float			_angleChangerTrace;
 	bool			_useWallCollision;
 	Object*			_target;
-
-	set<int>		_sUid;
+	bool			_isEffectAngle;
+	bool			_isResetUid;
+	vector<int>		_vUid;
 public :
 	virtual HRESULT init();
 	virtual void	update();
 	virtual	void	release();
 	virtual void	render(HDC hdc);
 	void GenerateTraceParticle();
-	void makeBullet(const char* imageName, string effectIgName, BULLETTYPE type, float x, float y, float angle, float damage, float speed, float maxDis, bool isFrame, float igAngle = 0, BULLETSPEEDTYPE speedtype = BST_NOMAL, string effectSound = "");
+	void makeBullet(const char* imageName, string effectIgName, BULLETTYPE type, float x, float y, float angle, float damage, float speed, float maxDis, bool isFrame, float igAngle = 0, BULLETSPEEDTYPE speedtype = BST_NOMAL, string effectSound = "", bool isEffectAngle = true);
 
 	void moveBullet();
 	void Animation();
@@ -68,7 +70,7 @@ public :
 	
 
 	////GetSet
-	set<int> getSUid() { return _sUid; }
+	vector<int>& getSUid() { return _vUid; }
 	BULLETTYPE getType() { return _type; }
 	BULLETSPEEDTYPE getSpeedType() {return _speedType;}
 	image* getIg() { return _ig; }
@@ -90,7 +92,7 @@ public :
 	bool getIsDead() { return _isDead; }
 	float getScale(){return _scale;}
 	bool getUseWallCollision() { return _useWallCollision; }
-
+	bool getIsEffectAngle() { return _isEffectAngle; }
 	void SetType(BULLETTYPE type) {  _type = type; }
 	void SetIg(image* ig) { _ig = ig; }
 	void SetEffectIgName(string effectname) { _effectIgName = effectname; }

@@ -1,10 +1,10 @@
 -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4
-Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile20,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile21,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4
-Stage1_Tile4,Stage1_Tile4,Stage1_Tile20,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,Stage1_Tile21,Stage1_Tile4,Stage1_Tile4
-Stage1_Tile4,Stage1_Tile20,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,Stage1_Tile21,Stage1_Tile4
+Stage1_Tile4,Stage1_Tile4,Stage1_Tile20,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile19,Stage1_Tile21,Stage1_Tile4,Stage1_Tile4
+Stage1_Tile4,Stage1_Tile20,Stage1_Tile8,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,Stage1_Tile6,Stage1_Tile21,Stage1_Tile4
 Stage1_Tile4,Stage1_Tile18,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,Stage1_Tile16,Stage1_Tile4
 Stage1_Tile4,Stage1_Tile18,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,Stage1_Tile16,Stage1_Tile4
+Stage1_Tile4,Stage1_Tile18,-1,-1,-1,-1,-1,-1,-1,-1,Stage1_Tile12,Stage1_Tile13,Stage1_Tile13,Stage1_Tile14,-1,-1,-1,-1,-1,-1,-1,-1,Stage1_Tile16,Stage1_Tile4
 Stage1_Tile4,Stage1_Tile18,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,Stage1_Tile16,Stage1_Tile4
 Stage1_Tile4,Stage1_Tile18,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,Stage1_Tile16,Stage1_Tile4
 Stage1_Tile4,Stage1_Tile18,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,Stage1_Tile16,Stage1_Tile4
@@ -15,4 +15,4 @@ Stage1_Tile4,Stage1_Tile4,Stage1_Tile22,Stage1_Tile31,-1,-1,-1,-1,-1,-1,-1,-1,-1
 Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile22,Stage1_Tile31,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,Stage1_Tile32,Stage1_Tile23,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4
 Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile22,Stage1_Tile31,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,Stage1_Tile32,Stage1_Tile23,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4
 Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile22,Stage1_Tile1,Stage1_Tile1,Stage1_Tile1,Stage1_Tile2,bridgeSecondFloor1,bridgeSecondFloor2,bridgeSecondFloor3,bridgeSecondFloor4,Stage1_Tile0,Stage1_Tile1,Stage1_Tile1,Stage1_Tile1,Stage1_Tile23,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4
-Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile18,-1,-1,-1,-1,Stage1_Tile16,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,-1,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4
+Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile22,Stage1_Tile1,Stage1_Tile1,Stage1_Tile1,Stage1_Tile1,Stage1_Tile23,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4,Stage1_Tile4

@@ -46,25 +46,29 @@ void Inventory::release()
 {
 }
 
+/// <summary>
+/// 돈을 실시간으로 업데이트해준다.
+/// </summary>
 void Inventory::UpdateMoney()
 {
 	dynamic_cast<UIText*>(_InvenFrame->GetChild("moneyText"))->SetText(to_string(_p->GetMoney()));
 }
 
-// 아이템이 버려질때
+// 아이템이 버려지도록 함.
 void Inventory::ThrowingOutTrash()
 {
 	if (INPUT->GetIsLButtonClicked())
 	{
-		if (PtInRect(&_trashFrame->GetChild("yes")->GetRect(), _ptMouse))
+		if (PtInRect(&_trashFrame->GetChild("yes")->GetRect(), _ptMouse)) // yes부분 클릭 시
 		{
-			_vInvenItems.erase(_vInvenItems.begin() + _dragIndex);
+			// 아이템 지우고 드래그 정보 없앤다.
+			_vInvenItems.erase(_vInvenItems.begin() + _dragIndex); 
 			EraseDragInfor();
 			ReloadUIImages();
 			_trashFrame->SetIsViewing(false);
 		}
 
-		else if (PtInRect(&_trashFrame->GetChild("no")->GetRect(), _ptMouse))
+		else if (PtInRect(&_trashFrame->GetChild("no")->GetRect(), _ptMouse)) // no부분 클릭 시
 		{
 			EraseDragInfor();
 			_trashFrame->SetIsViewing(false);
@@ -75,7 +79,7 @@ void Inventory::ThrowingOutTrash()
 // EquipItemPos는 조건 검사가 완료된 상황에서 사용되는 위치별 착용 함수이다.
 void Inventory::EquipItemPos(int pos, Item* item, int index, bool isUsed)
 {
-	_vInvenItems.erase(_vInvenItems.begin() + index);
+	_vInvenItems.erase(_vInvenItems.begin() + index); // index 위치의 아이템 삭제
 	if(isUsed) item->EquipUnEquipStatus(true);
 
 	Item* item1 = nullptr;
@@ -86,7 +90,7 @@ void Inventory::EquipItemPos(int pos, Item* item, int index, bool isUsed)
 	case 0: // WEAPON 1
 		if (item->GetitemType() == ITEMTYPE::IT_WEAPON_ONEHAND)
 		{
-			item1 = _p->SetWeapon(0, item);
+			item1 = _p->SetWeapon(0, item); 
 			if (item1 != nullptr)
 			{
 				AddItem(item1);
@@ -370,11 +374,12 @@ void Inventory::EquipItem()
 							if (_p->GetWeapon(0) == nullptr)
 							{ // 0번에 착용
 								EquipItemPos(0, item, i, _p->GetSelectedWeaponIdx() == 0);
+								
 							}
 
 							else if (_p->GetWeapon(1) == nullptr)
 							{ // 1번에 착용
-								EquipItemPos(1, item, 1, _p->GetSelectedWeaponIdx() == 1);
+								EquipItemPos(1, item, i, _p->GetSelectedWeaponIdx() == 1);
 							}
 
 							else if (_vInvenItems.size() >= 15)
@@ -683,8 +688,12 @@ void Inventory::ReloadUIImages()
 	
 	_InvenFrame->GetChild("curWeaponSub_1")->SetImage(nullptr);
 	if (p->GetSubWeapon(0) != nullptr) _InvenFrame->GetChild("curWeaponSub_1")->SetImage(p->GetSubWeapon(0)->GetInvenImage());
+	else if(p->GetWeapon(0) != nullptr && p->GetWeapon(0)->GetitemType() == IT_WEAPON_TWOHAND) 
+		_InvenFrame->GetChild("curWeaponSub_1")->SetImage(IMAGEMANAGER->findImage("ItemX"));
 	_InvenFrame->GetChild("curWeaponSub_2")->SetImage(nullptr);
 	if (p->GetSubWeapon(1) != nullptr) _InvenFrame->GetChild("curWeaponSub_2")->SetImage(p->GetSubWeapon(1)->GetInvenImage());
+	else if (p->GetWeapon(1) != nullptr && p->GetWeapon(1)->GetitemType() == IT_WEAPON_TWOHAND)
+		_InvenFrame->GetChild("curWeaponSub_2")->SetImage(IMAGEMANAGER->findImage("ItemX"));
 	
 
 	for (int i = 0; i < p->GetAccesoryCount(); i++)

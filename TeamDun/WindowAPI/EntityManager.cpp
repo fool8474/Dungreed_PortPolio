@@ -54,10 +54,10 @@ void EntityManager::release()
 	}
 }
 
-Bullet* EntityManager::makeBullet(const char* imageName, string effectIgName, BULLETTYPE type, float x, float y, float angle, float damage, float speed, float maxDis, bool isFrame, float igAngle, BULLETSPEEDTYPE speedtype, string effectSound)
+Bullet* EntityManager::makeBullet(const char* imageName, string effectIgName, BULLETTYPE type, float x, float y, float angle, float damage, float speed, float maxDis, bool isFrame, float igAngle, BULLETSPEEDTYPE speedtype, string effectSound ,bool isEffectAngle)
 {
 	Bullet* _bullet = new Bullet;
-	_bullet->makeBullet(imageName, effectIgName, type, x, y, angle, damage, speed, maxDis, isFrame, igAngle, speedtype, effectSound);
+	_bullet->makeBullet(imageName, effectIgName, type, x, y, angle, damage, speed, maxDis, isFrame, igAngle, speedtype, effectSound, isEffectAngle);
 	_bullet->SetUseTraceParticle(false);
 	_vBullets.push_back(_bullet);
 	return _bullet;
@@ -74,16 +74,41 @@ void EntityManager::eraseBullet()
 	{
 		if (_vBullets[i]->getDis() >= _vBullets[i]->getMaxDis())
 		{
-			if (_vBullets[i]->getSpeedType() == BST_GRAVITY)
+			if (_vBullets[i]->getIsEffectAngle())
 			{
-				EFFECTMANAGER->AddEffect(_vBullets[i]->getX(), _vBullets[i]->getY(), _vBullets[i]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[i]->getAngle(), 1, 1, false, false, true, _vBullets[i]->getEffectSound(), _vBullets[i]->getDamage(), true);
-				_vBullets[i]->SetIsDead(true);
+				if (_vBullets[i]->getSpeedType() == BST_GRAVITY)
+				{
+					EFFECTMANAGER->AddEffect(_vBullets[i]->getX(), _vBullets[i]->getY(), _vBullets[i]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[i]->getAngle(), 1, 1, false, false, true, _vBullets[i]->getEffectSound(), _vBullets[i]->getDamage(), true);
+					_vBullets[i]->SetIsDead(true);
+				}
+				else if (_vBullets[i]->getSpeedType() == BST_RETURN)
+				{
+					_vBullets[i]->SetIsDead(true);
+				}
+				else
+				{
+					EFFECTMANAGER->AddEffect(_vBullets[i]->getX(), _vBullets[i]->getY(), _vBullets[i]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[i]->getAngle(), 1, 1, false, false, true, _vBullets[i]->getEffectSound());
+					_vBullets[i]->SetIsDead(true);
+				}
 			}
 			else
 			{
-				EFFECTMANAGER->AddEffect(_vBullets[i]->getX(), _vBullets[i]->getY(), _vBullets[i]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[i]->getAngle(), 1, 1, false, false, true, _vBullets[i]->getEffectSound());
-				_vBullets[i]->SetIsDead(true);
+				if (_vBullets[i]->getSpeedType() == BST_GRAVITY)
+				{
+					EFFECTMANAGER->AddEffect(_vBullets[i]->getX(), _vBullets[i]->getY(), _vBullets[i]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[i]->getAngle(), 1, 1, false, false, true, _vBullets[i]->getEffectSound(), _vBullets[i]->getDamage(), true,false);
+					_vBullets[i]->SetIsDead(true);
+				}
+				else if (_vBullets[i]->getSpeedType() == BST_RETURN)
+				{
+					_vBullets[i]->SetIsDead(true);
+				}
+				else
+				{
+					EFFECTMANAGER->AddEffect(_vBullets[i]->getX(), _vBullets[i]->getY(), _vBullets[i]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[i]->getAngle(), 1, 1, false, false, true, _vBullets[i]->getEffectSound() , 0,false,false);
+					_vBullets[i]->SetIsDead(true);
+				}
 			}
+			
 		}
 	}
 
@@ -102,19 +127,39 @@ void EntityManager::eraseBullet()
 
 				if ((r == 255 && g == 0 && b == 0))
 				{
-					if (_vBullets[i]->getSpeedType() == BST_GRAVITY)
+					if (_vBullets[i]->getIsEffectAngle())
 					{
-						EFFECTMANAGER->AddEffect(_vBullets[i]->getX() + (_vBullets[i]->getIg()->getFrameWidth() + _vBullets[i]->getScale()) / 2
-							, _vBullets[i]->getY() + (_vBullets[i]->getIg()->getFrameHeight() + _vBullets[i]->getScale()) / 2, _vBullets[i]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[i]->getAngle(), 1, 1, false, false, true, _vBullets[i]->getEffectSound(), _vBullets[i]->getDamage() , true);
-						_vBullets[i]->SetIsDead(true);
+						if (_vBullets[i]->getSpeedType() == BST_GRAVITY)
+						{
+							EFFECTMANAGER->AddEffect(_vBullets[i]->getX() + (_vBullets[i]->getIg()->getFrameWidth() + _vBullets[i]->getScale()) / 2
+								, _vBullets[i]->getY() + (_vBullets[i]->getIg()->getFrameHeight() + _vBullets[i]->getScale()) / 2, _vBullets[i]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[i]->getAngle(), 1, 1, false, false, true, _vBullets[i]->getEffectSound(), _vBullets[i]->getDamage(), true);
+							_vBullets[i]->SetIsDead(true);
+						}
+						else
+						{
+
+							EFFECTMANAGER->AddEffect(_vBullets[i]->getX() + (_vBullets[i]->getIg()->getFrameWidth() + _vBullets[i]->getScale()) / 2
+								, _vBullets[i]->getY() + (_vBullets[i]->getIg()->getFrameHeight() + _vBullets[i]->getScale()) / 2, _vBullets[i]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[i]->getAngle(), 1, 1, false, false, true, _vBullets[i]->getEffectSound());
+							_vBullets[i]->SetIsDead(true);
+						}
 					}
 					else
 					{
+						if (_vBullets[i]->getSpeedType() == BST_GRAVITY)
+						{
+							EFFECTMANAGER->AddEffect(_vBullets[i]->getX() + (_vBullets[i]->getIg()->getFrameWidth() + _vBullets[i]->getScale()) / 2
+								, _vBullets[i]->getY() + (_vBullets[i]->getIg()->getFrameHeight() + _vBullets[i]->getScale()) / 2, _vBullets[i]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[i]->getAngle(), 1, 1, false, false, true, _vBullets[i]->getEffectSound(), _vBullets[i]->getDamage(), true ,false);
+							_vBullets[i]->SetIsDead(true);
+						}
+						else
+						{
 
-						EFFECTMANAGER->AddEffect(_vBullets[i]->getX() + (_vBullets[i]->getIg()->getFrameWidth() + _vBullets[i]->getScale()) / 2
-							, _vBullets[i]->getY() + (_vBullets[i]->getIg()->getFrameHeight() + _vBullets[i]->getScale()) / 2, _vBullets[i]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[i]->getAngle(), 1, 1, false, false, true, _vBullets[i]->getEffectSound());
-						_vBullets[i]->SetIsDead(true);
+							EFFECTMANAGER->AddEffect(_vBullets[i]->getX() + (_vBullets[i]->getIg()->getFrameWidth() + _vBullets[i]->getScale()) / 2
+								, _vBullets[i]->getY() + (_vBullets[i]->getIg()->getFrameHeight() + _vBullets[i]->getScale()) / 2, _vBullets[i]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[i]->getAngle(), 1, 1, false, false, true, _vBullets[i]->getEffectSound(), 0, false, false);
+							_vBullets[i]->SetIsDead(true);
+						}
 					}
+					
 
 				}
 			}
@@ -159,6 +204,7 @@ void EntityManager::HitBullet()
 			{
 				if (_vBullets[j]->getType() == BT_PLAYER || _vBullets[j]->getType() == BT_PLAYERNOCOL)
 				{
+					
 					if (_vBullets[j]->getSpeedType() == BST_GRAVITY)
 					{
 						if (IntersectRect(&temp, &_vBullets[j]->getRc(), &curObj->GetBody()))
@@ -170,16 +216,103 @@ void EntityManager::HitBullet()
 								{
 									if (dynamic_cast<Enemy*>(curObj)->GetIsSpawned())
 									{
-										EFFECTMANAGER->AddEffect(_vBullets[j]->getX(), _vBullets[j]->getY(), _vBullets[j]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[j]->getAngle(), 1, 1, false, false, true, _vBullets[j]->getEffectSound(),_vBullets[j]->getDamage() , true);
+										if (_vBullets[j]->getIsEffectAngle())
+										{
+											EFFECTMANAGER->AddEffect(_vBullets[j]->getX(), _vBullets[j]->getY(), _vBullets[j]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[j]->getAngle(), 1, 1, false, false, true, _vBullets[j]->getEffectSound(), _vBullets[j]->getDamage(), true);
+										}
+										else
+										{
+											EFFECTMANAGER->AddEffect(_vBullets[j]->getX(), _vBullets[j]->getY(), _vBullets[j]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[j]->getAngle(), 1, 1, false, false, true, _vBullets[j]->getEffectSound(), _vBullets[j]->getDamage(), true ,false);
+										}
 										_vBullets[j]->SetIsDead(true);
 										MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetDamage(_vBullets[j]->getDamage());
 									}
 								}
 								else
 								{
-									EFFECTMANAGER->AddEffect(_vBullets[j]->getX(), _vBullets[j]->getY(), _vBullets[j]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[j]->getAngle(), 1, 1, false, false, true, _vBullets[j]->getEffectSound(), _vBullets[j]->getDamage() , true);
+									if (_vBullets[j]->getIsEffectAngle())
+									{
+										EFFECTMANAGER->AddEffect(_vBullets[j]->getX(), _vBullets[j]->getY(), _vBullets[j]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[j]->getAngle(), 1, 1, false, false, true, _vBullets[j]->getEffectSound(), _vBullets[j]->getDamage(), true);
+
+									}
+									else
+									{
+										EFFECTMANAGER->AddEffect(_vBullets[j]->getX(), _vBullets[j]->getY(), _vBullets[j]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[j]->getAngle(), 1, 1, false, false, true, _vBullets[j]->getEffectSound(), _vBullets[j]->getDamage(), true ,false);
+									}
 									_vBullets[j]->SetIsDead(true);
 									MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetDamage(_vBullets[j]->getDamage());
+								}
+							}
+							break;
+						}
+					}
+					else if (_vBullets[j]->getSpeedType() == BST_RETURN)
+					{
+						if (IntersectRect(&temp, &_vBullets[j]->getRc(), &curObj->GetBody()))
+						{
+							if (!curObj->GetIsDead())
+							{
+								if (curObj->GetType() == OBJECTTYPE::OT_MONSTER)
+								{
+									if (dynamic_cast<Enemy*>(curObj)->GetIsSpawned())
+									{
+										if (_vBullets[j]->getSUid().size() != 0)
+										{
+
+											bool  isFinded = false;
+											for (int k = 0; k < _vBullets[j]->getSUid().size(); k++)
+											{
+												if (MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetUid() == _vBullets[j]->getSUid()[k])
+												{
+													isFinded = true;
+													
+													break;
+												}
+											}
+
+											if (!isFinded)
+											{
+												_vBullets[j]->getSUid().push_back(MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetUid());
+												MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetDamage(_vBullets[j]->getDamage());
+											}
+										}
+										else
+										{
+											_vBullets[j]->getSUid().push_back(MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetUid());
+											
+											MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetDamage(_vBullets[j]->getDamage());
+										}
+
+									}
+								}
+								else
+								{
+									if (_vBullets[j]->getSUid().size() != 0)
+									{
+
+										bool  isFinded = false;
+										for (int k = 0; k < _vBullets[j]->getSUid().size(); k++)
+										{
+											if (MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetUid() == _vBullets[j]->getSUid()[k])
+											{
+												isFinded = true;
+
+												break;
+											}
+										}
+
+										if (!isFinded)
+										{
+											_vBullets[j]->getSUid().push_back(MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetUid());
+											MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetDamage(_vBullets[j]->getDamage());
+										}
+									}
+									else
+									{
+										_vBullets[j]->getSUid().push_back(MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetUid());
+										
+										MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetDamage(_vBullets[j]->getDamage());
+									}
 								}
 							}
 							break;
@@ -196,14 +329,32 @@ void EntityManager::HitBullet()
 								{
 									if (dynamic_cast<Enemy*>(curObj)->GetIsSpawned())
 									{
-										EFFECTMANAGER->AddEffect(_vBullets[j]->getX(), _vBullets[j]->getY(), _vBullets[j]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[j]->getAngle(), 1, 1, false, false, true, _vBullets[j]->getEffectSound());
+										if (_vBullets[j]->getIsEffectAngle())
+										{
+											EFFECTMANAGER->AddEffect(_vBullets[j]->getX(), _vBullets[j]->getY(), _vBullets[j]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[j]->getAngle(), 1, 1, false, false, true, _vBullets[j]->getEffectSound());
+
+										}
+										else
+										{
+											EFFECTMANAGER->AddEffect(_vBullets[j]->getX(), _vBullets[j]->getY(), _vBullets[j]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[j]->getAngle(), 1, 1, false, false, true, _vBullets[j]->getEffectSound(), 0 , false, false);
+
+										}
 										_vBullets[j]->SetIsDead(true);
 										MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetDamage(_vBullets[j]->getDamage());
 									}
 								}
 								else
 								{
-									EFFECTMANAGER->AddEffect(_vBullets[j]->getX(), _vBullets[j]->getY(), _vBullets[j]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[j]->getAngle(), 1, 1, false, false, true, _vBullets[j]->getEffectSound());
+									if (_vBullets[j]->getIsEffectAngle())
+									{
+										EFFECTMANAGER->AddEffect(_vBullets[j]->getX(), _vBullets[j]->getY(), _vBullets[j]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[j]->getAngle(), 1, 1, false, false, true, _vBullets[j]->getEffectSound());
+
+									}
+									else
+									{
+										EFFECTMANAGER->AddEffect(_vBullets[j]->getX(), _vBullets[j]->getY(), _vBullets[j]->getEffectIgName(), 4, 0, 0, false, 255, _vBullets[j]->getAngle(), 1, 1, false, false, true, _vBullets[j]->getEffectSound(), 0, false, false);
+
+									}
 									_vBullets[j]->SetIsDead(true);
 									MAPMANAGER->GetPlayMap()->GetObjects()[i]->GetDamage(_vBullets[j]->getDamage());
 								}

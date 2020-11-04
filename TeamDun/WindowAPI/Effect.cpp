@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Effect.h"
 
-HRESULT Effect::init(float x, float y, string imgName, int animSpeed, int frameX, int frameY, bool isLoop, int alpha, float angle, float scaleX, float scaleY, bool isAlpha, bool useCamera, bool isFirstViewing, string effectSound, float damage, bool isCenter)
+HRESULT Effect::init(float x, float y, string imgName, int animSpeed, int frameX, int frameY, bool isLoop, int alpha, float angle, float scaleX, float scaleY, bool isAlpha, bool useCamera, bool isFirstViewing, string effectSound, float damage, bool isCenter, bool isEffectAngle)
 {
 	_frameX = frameX;
 	_frameY = frameY;
@@ -17,14 +17,10 @@ HRESULT Effect::init(float x, float y, string imgName, int animSpeed, int frameX
 		_y = y - _image->getFrameHeight() / 2;
 	}
 	_initAnimTimer = _animTimer = animSpeed;
-	if (!isCenter)
-	{
-		_body = RectMake(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
-	}
-	else
-	{
-		_body = RectMake(_x - _image->getFrameWidth() / 2, _y - _image->getFrameHeight() / 2, _image->getFrameWidth(), _image->getFrameHeight());
-	}
+
+	_body = RectMake(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
+
+
 
 	_isLoop = isLoop;
 	_isDead = false;
@@ -41,6 +37,7 @@ HRESULT Effect::init(float x, float y, string imgName, int animSpeed, int frameX
 	{
 		SOUNDMANAGER->play(effectSound);
 	}
+	_isEffectAngle = isEffectAngle;
 	return S_OK;
 }
 
@@ -70,18 +67,33 @@ void Effect::render(HDC hdc)
 			else CAMERAMANAGER->AlphaRender(hdc, _image, _x, _y, _alpha, _angle);
 		}
 	}
-
 	else
 	{
-		if (_useCamera)
+		if (_isEffectAngle)
 		{
-			if (_scaleX != 1 || _scaleY != 1) _image->frameStretchAlphaRender(hdc, _x, _y,_frameX,_frameY, _scaleX, _scaleY, _alpha, _angle);
-			else _image->frameAlphaRender(hdc, _x, _y, _frameX, _frameY, _alpha, _angle);
+			if (_useCamera)
+			{
+				if (_scaleX != 1 || _scaleY != 1) _image->frameStretchAlphaRender(hdc, _x, _y, _frameX, _frameY, _scaleX, _scaleY, _alpha, _angle);
+				else _image->frameAlphaRender(hdc, _x, _y, _frameX, _frameY, _alpha, _angle);
+			}
+			else
+			{
+				if (_scaleX != 1 || _scaleY != 1) CAMERAMANAGER->FrameStretchAlphaRender(hdc, _image, _x, _y, _frameX, _frameY, _scaleX, _scaleY, _alpha, _angle);
+				else CAMERAMANAGER->FrameAlphaRender(hdc, _image, _x, _y, _frameX, _frameY, _alpha, _angle);
+			}
 		}
 		else
 		{
-			if (_scaleX != 1 || _scaleY != 1) CAMERAMANAGER->FrameStretchAlphaRender(hdc, _image, _x, _y, _frameX, _frameY, _scaleX, _scaleY, _alpha, _angle);
-			else CAMERAMANAGER->FrameAlphaRender(hdc, _image, _x, _y, _frameX, _frameY, _alpha, _angle);
+			if (_useCamera)
+			{
+				if (_scaleX != 1 || _scaleY != 1) _image->frameStretchAlphaRender(hdc, _x, _y,_frameX,_frameY, _scaleX, _scaleY, _alpha, 0);
+				else _image->frameAlphaRender(hdc, _x, _y, _frameX, _frameY, _alpha, 0);
+			}
+			else
+			{
+				if (_scaleX != 1 || _scaleY != 1) CAMERAMANAGER->FrameStretchAlphaRender(hdc, _image, _x, _y, _frameX, _frameY, _scaleX, _scaleY, _alpha, 0);
+				else CAMERAMANAGER->FrameAlphaRender(hdc, _image, _x, _y, _frameX, _frameY, _alpha, 0);
+			}
 		}
 	}
 }

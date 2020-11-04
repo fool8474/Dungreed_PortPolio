@@ -450,6 +450,9 @@
     <ClCompile Include="abyssBanshee.cpp">
       <Filter>MainGame\Object\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Boomerang.cpp">
+      <Filter>MainGame\Item\Items\Weapon\Range</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gameNode.h">
@@ -815,6 +818,9 @@
     </ClInclude>
     <ClInclude Include="abyssBanshee.h">
       <Filter>MainGame\Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Boomerang.h">
+      <Filter>MainGame\Item\Items\Weapon\Range</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

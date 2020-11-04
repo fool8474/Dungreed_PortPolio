@@ -305,7 +305,7 @@ void FieldMap::LoadObject()
 
 	for (int i = 0; i < GetObjects().size(); i++)
 	{
-		if (GetFieldMapType() == FIELDMAPTYPE::FMT_TRAP && GetObjects()[i]->GetId() == 241)
+		if (GetObjects()[i]->GetId() == 241)
 		{
 			for (int j = 0; j < GetObjects().size(); j++)
 			{

@@ -25,7 +25,7 @@ public :
 	WormVillage*		GetWormVillage() { return _wormVillage; }
 	void				setPlayer(Player* p) { _p = p; }
 	
-	Bullet* makeBullet(const char* imageName, string effectIgName, BULLETTYPE type, float x, float y, float angle, float damage, float speed, float maxDis, bool isFrame, float igAngle = 0, BULLETSPEEDTYPE speedtype = BST_NOMAL, string effectSound = "");
+	Bullet* makeBullet(const char* imageName, string effectIgName, BULLETTYPE type, float x, float y, float angle, float damage, float speed, float maxDis, bool isFrame, float igAngle = 0, BULLETSPEEDTYPE speedtype = BST_NOMAL, string effectSound = "", bool isEffectAngle = true);
 	void eraseBullet();
 	void HitBullet();
 };

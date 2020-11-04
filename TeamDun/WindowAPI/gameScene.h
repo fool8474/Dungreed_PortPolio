@@ -38,5 +38,6 @@ public:
 	void update();
 	void render();
 	void doubleClick();
+	void ExitPage();
 };
 
