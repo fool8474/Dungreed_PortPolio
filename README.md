@@ -11,6 +11,7 @@ Dungreed는 WINAPI로 제작한 팀 제작 게임으로, 로그라이트 게임 
 자동으로 생성된 픽셀충돌 맵을 통해 충돌이 된다.
 마을과 던전이 준비되어 있다.
 
+## 던전
 <img src="https://github.com/fool8474/Dungreed_PortPolio/blob/master/ScreenShot/ScreenShot%20(2).png" width="480px" height="270px"></img></br>
 던전은 랜덤으로 생겨나며, 방이 연결되는 곳에 문이 생겨난다.
 던전에서는 10종 이상의 개성있는 몬스터와 보스가 준비되어있다.
